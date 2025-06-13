@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+# pick option
+option=$(echo -e "personal\ndotfiles\nwork" | fzf)
+path=$HOME/codes/$option
+
+# find desired project and update path
+project=$(ls $path | fzf)
+path=$path/$project
+
+# open in desired editor
+editor=$(echo -e "code\nzed\nterm" | fzf)
+case "$editor" in
+"term")
+	tmux new -s $project -c $path
+	;;
+*)
+	eval $editor $path
+	;;
+esac
