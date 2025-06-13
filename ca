@@ -1,14 +1,32 @@
 #!/usr/bin/env bash
 
-# pick option
+################
+# PICK OPTION: you can modify to any option you want and update your path for
+# where you store your code
+# -------------
+# Each option is separated by a newline '\n' for fzf to parse.
+# the chosen option is used to get the path of the directory to search for
+# projects
+################
 option=$(echo -e "personal\ndotfiles\nwork" | fzf)
 path=$HOME/codes/$option
 
-# find desired project and update path
+################
+# FIND DESIRED PROJECT AND UPDATE PATH
+# -------------
+# Now, I fuzzy find the project I want to work on and append that to the path
+################
 project=$(ls $path | fzf)
 path=$path/$project
 
-# open in desired editor
+################
+# OPEN IN DESIRED EDITOR: You can add or remove editor options according to
+# your preferences
+# -------------
+# I pick which environment to use: either zed, vscode or just work in the
+# terminal using tmux.
+# The newline separation is to help fzf parse the options on separate lines
+################
 editor=$(echo -e "code\nzed\nterm" | fzf)
 case "$editor" in
 "term")
