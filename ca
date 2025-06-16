@@ -23,11 +23,10 @@ path=$path/$project
 # OPEN IN DESIRED EDITOR: You can add or remove editor options according to
 # your preferences
 # -------------
-# I pick which environment to use: either zed, vscode or just work in the
-# terminal using tmux.
+# I pick which environment to use: either vscode or tmux.
 # The newline separation is to help fzf parse the options on separate lines
 ################
-editor=$(echo -e "code\nzed\nterm" | fzf)
+editor=$(echo -e "code\nterm" | fzf)
 case "$editor" in
 "term")
 	tmux new -s $project -c $path
